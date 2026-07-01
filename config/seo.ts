@@ -37,6 +37,7 @@ export const seoConfig = {
   author: siteConfig.name,
   creator: siteConfig.name,
   publisher: siteConfig.name,
+  category: "technology",
 } as const;
 
 export type SeoConfig = typeof seoConfig;
