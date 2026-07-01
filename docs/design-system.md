@@ -4,7 +4,7 @@ Foundational tokens and style architecture for the ASK18 Innovations corporate w
 
 ## Status
 
-**Milestone 2.2 complete.** Color, spacing, radius, container, and typography tokens are centralized in CSS. Layout primitives live under `components/primitives/`. Typography components live under `components/typography/`.
+**Milestone 2.2 complete.** Color, spacing, radius, container, and typography tokens are centralized in CSS. Layout primitives live under `components/primitives/`. Typography components live under `components/typography/`. Brand components live under `components/brand/`.
 
 ## Token Sources
 
@@ -153,6 +153,78 @@ import { Stack } from "@/components/primitives";
   <Caption>Prices subject to change.</Caption>
   <Text>Install with <Code>npm install</Code>.</Text>
 </Stack>
+```
+
+## Brand Components
+
+Text-only brand identity components in `components/brand/`. Company name and tagline are sourced from `config/site.ts` — never hardcoded in components or pages.
+
+**Logo asset deferred:** These components do not render an image or invented logo mark. When the official ASK18 logo asset is available, it will be added under `components/brand/` (e.g. `BrandLogo.tsx`) and composed alongside or instead of text in `BrandLockup`. Do not recreate or redraw the official logo in code.
+
+### BrandName
+
+**File:** `components/brand/BrandName.tsx`
+
+Renders `siteConfig.name` using the typography heading scale.
+
+| Prop | Default | Purpose |
+|------|---------|---------|
+| `level` | — | Semantic heading level; omit for `<span>` (header/footer text) |
+| `size` | `4` | Visual heading size |
+| `className` | — | Optional utility classes |
+
+**Use when:** Displaying the company name in headers, footers, coming-soon pages, or as a page title.
+
+**Do not use when:** Generic headings unrelated to the company name — use `Heading` instead.
+
+```tsx
+<BrandName />                    {/* span, compact */}
+<BrandName level={1} size={2} /> {/* page title */}
+```
+
+### BrandTagline
+
+**File:** `components/brand/BrandTagline.tsx`
+
+Renders `siteConfig.tagline` using the typography system.
+
+| Prop | Default | Purpose |
+|------|---------|---------|
+| `variant` | `"lead"` | `"lead"` for prominent display; `"text"` for compact muted text |
+| `as` | `"p"` | Element when `variant="text"` |
+| `className` | — | Optional utility classes |
+
+**Use when:** Showing the official tagline below the company name or in marketing copy blocks.
+
+**Do not use when:** Page-specific subtitles or product descriptions — use `Lead` or `Text` with page content.
+
+```tsx
+<BrandTagline />
+<BrandTagline variant="text" as="span" />
+```
+
+### BrandLockup
+
+**File:** `components/brand/BrandLockup.tsx`
+
+Vertically stacks `BrandName` and `BrandTagline` via the `Stack` primitive.
+
+| Prop | Default | Purpose |
+|------|---------|---------|
+| `nameLevel` | — | Passed to `BrandName` |
+| `nameSize` | `4` | Passed to `BrandName` |
+| `taglineVariant` | `"lead"` | Passed to `BrandTagline` |
+| `showTagline` | `true` | Hide tagline in compact header contexts |
+| `align` | `"start"` | Stack alignment |
+| `className` | — | Optional utility classes |
+
+**Use when:** Header brand area, footer identity block, or coming-soon page hero (when built).
+
+**Do not use when:** Inline mentions of the company name within body copy.
+
+```tsx
+<BrandLockup />
+<BrandLockup showTagline={false} nameSize={5} /> {/* compact header */}
 ```
 
 ## Layout Primitives
