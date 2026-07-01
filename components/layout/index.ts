@@ -10,3 +10,5 @@ export { HeaderContainer } from "./HeaderContainer";
 export { MainNavigation } from "./MainNavigation";
 export { MobileNavigation } from "./MobileNavigation";
 export { NavigationLink, type NavigationLinkProps } from "./NavigationLink";
+export { SiteFooter } from "./SiteFooter";
+export { FooterNavigation } from "./FooterNavigation";

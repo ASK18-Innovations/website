@@ -1,4 +1,5 @@
 import { SiteHeader } from "./SiteHeader";
+import { SiteFooter } from "./SiteFooter";
 
 type AppShellProps = {
   children: React.ReactNode;
@@ -21,7 +22,7 @@ function SkipToContent() {
 
 /**
  * Application shell — owns page structure for every route.
- * SiteHeader is integrated; SiteFooter mounts below children when built.
+ * SiteHeader and SiteFooter wrap all page content.
  */
 export function AppShell({ children }: AppShellProps) {
   return (
@@ -29,7 +30,7 @@ export function AppShell({ children }: AppShellProps) {
       <SkipToContent />
       <SiteHeader />
       {children}
-      {/* Future: <SiteFooter /> */}
+      <SiteFooter />
     </div>
   );
 }
