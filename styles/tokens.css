@@ -1,0 +1,33 @@
+/**
+ * Design tokens for ASK18 Innovations.
+ * Import into globals.css when the design system is wired up.
+ */
+
+:root {
+  /* Brand colors — placeholders until brand palette is finalized */
+  --ask18-color-primary: #171717;
+  --ask18-color-secondary: #525252;
+  --ask18-color-accent: #2563eb;
+
+  /* Surface */
+  --ask18-color-background: #ffffff;
+  --ask18-color-foreground: #171717;
+  --ask18-color-muted: #737373;
+
+  /* Spacing scale */
+  --ask18-space-xs: 0.25rem;
+  --ask18-space-sm: 0.5rem;
+  --ask18-space-md: 1rem;
+  --ask18-space-lg: 1.5rem;
+  --ask18-space-xl: 2rem;
+  --ask18-space-2xl: 3rem;
+
+  /* Layout */
+  --ask18-content-max-width: 72rem;
+  --ask18-section-padding-y: var(--ask18-space-2xl);
+
+  /* Radius */
+  --ask18-radius-sm: 0.25rem;
+  --ask18-radius-md: 0.5rem;
+  --ask18-radius-lg: 1rem;
+}

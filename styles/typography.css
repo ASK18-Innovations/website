@@ -1,0 +1,25 @@
+/**
+ * Typography scale for ASK18 Innovations.
+ * Import into globals.css when the design system is wired up.
+ */
+
+:root {
+  --ask18-font-sans: var(--font-geist-sans, system-ui, sans-serif);
+  --ask18-font-mono: var(--font-geist-mono, ui-monospace, monospace);
+
+  --ask18-text-xs: 0.75rem;
+  --ask18-text-sm: 0.875rem;
+  --ask18-text-base: 1rem;
+  --ask18-text-lg: 1.125rem;
+  --ask18-text-xl: 1.25rem;
+  --ask18-text-2xl: 1.5rem;
+  --ask18-text-3xl: 1.875rem;
+  --ask18-text-4xl: 2.25rem;
+
+  --ask18-leading-tight: 1.25;
+  --ask18-leading-normal: 1.5;
+  --ask18-leading-relaxed: 1.625;
+
+  --ask18-tracking-tight: -0.025em;
+  --ask18-tracking-normal: 0;
+}
