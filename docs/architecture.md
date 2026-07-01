@@ -91,7 +91,65 @@ All site-wide values live in `config/`. This layer is the **single source of tru
 - Navigation arrays must reference `routes` — never duplicate path strings in `navigation.ts`.
 - SEO descriptions and titles must derive from `seoConfig` and `siteConfig`.
 - External URLs exist only in `config/site.ts` (social links, base URL).
-- Full page-level `Metadata` assembly is deferred; use `lib/seo` building blocks when that milestone begins.
+- Page metadata extends root defaults via `createPageMetadata()` from `@/lib/seo`.
+
+## Application Shell
+
+Every route is wrapped by the root layout (`app/layout.tsx`), which delegates structure to layout primitives in `components/layout/`.
+
+### Layout hierarchy
+
+```
+html (lang from siteConfig, font variables, font-sans)
+└── body (token typography, background, flex column)
+    └── AppShell (flex column, skip link, future header/footer slots)
+        └── {page content}
+```
+
+Future pages compose their content with optional layout primitives:
+
+```
+AppShell (in root layout — automatic)
+└── PageContainer (max width + horizontal padding)
+    └── MainContent (#main-content landmark)
+        └── page sections
+```
+
+The starter homepage (`app/page.tsx`) is unchanged and manages its own `<main>` until it is rebuilt. New pages should use `MainContent` once and avoid nested `<main>` elements.
+
+### Components
+
+| Component | Responsibility |
+|-----------|----------------|
+| `AppShell` | Top-level wrapper; skip-to-content link; future `SiteHeader` / `SiteFooter` mount points |
+| `PageContainer` | Token-based max width (`--ask18-container-*`) and horizontal padding |
+| `MainContent` | Semantic `<main id="main-content">` landmark for accessibility |
+
+All layout components are **Server Components** with no client-side JavaScript.
+
+### Future Header/Footer integration
+
+`AppShell` reserves two comment-marked slots:
+
+1. **Before `{children}`** — site header / navigation
+2. **After `{children}`** — site footer
+
+When `SiteHeader` and `SiteFooter` are built, they import navigation from `@/config/navigation` and identity from `@/config/site`. No changes to `app/layout.tsx` are required beyond what already wraps children in `AppShell`.
+
+### Container strategy
+
+- **Single source of width:** Container sizes map to CSS variables in `styles/tokens.css` (`--ask18-container-sm` through `--ask18-container-content`).
+- **Default page width:** `PageContainer` with `size="content"` uses `--ask18-container-content` (72rem).
+- **Prose width:** `size="prose"` for long-form content (`--ask18-container-prose`, 42rem).
+- **Horizontal padding:** `--ask18-container-padding-x` — never hardcode page gutters in individual pages.
+- **Usage:** Import `PageContainer` and `MainContent` in route pages, not in the root layout, so special layouts (e.g. full-bleed hero) remain possible.
+
+### Accessibility
+
+- `html` `lang` attribute driven by `siteConfig.language`
+- Skip-to-content link in `AppShell` targets `#main-content` on pages using `MainContent`
+- One `<main>` landmark per page
+- Focus ring styles use `--ask18-focus-ring` token
 
 ## Conventions
 
@@ -101,4 +159,4 @@ All site-wide values live in `config/`. This layer is the **single source of tru
 
 ## Current State
 
-The homepage (`app/page.tsx`) remains the default Next.js starter page. Configuration architecture is in place; layout shell and page routes are not yet implemented.
+The root layout wraps all routes in `AppShell` with centralized metadata and token-based typography. Layout primitives (`PageContainer`, `MainContent`) are ready for new pages. The starter homepage retains its existing markup until replaced.
