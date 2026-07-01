@@ -9,10 +9,11 @@ import { siteConfig } from "@/config/site";
  * and may override specific fields via `export const metadata`.
  *
  * Favicon strategy (assets not yet added):
+ * - `public/favicons/` — source files for favicon and app icons
  * - `app/favicon.ico` — browser tab icon (Next.js file convention, auto-served)
  * - `app/icon.png` — 32×32 PNG app icon (`metadata.icons` or file convention)
  * - `app/apple-icon.png` — Apple touch icon for iOS home screen
- * - `public/og-image.png` — default Open Graph image (1200×630); wire via
+ * - `public/og/` — default Open Graph image (1200×630); wire via
  *   `openGraph.images` once brand creative is finalized
  *
  * Do not generate placeholder images. Add real brand assets when available.

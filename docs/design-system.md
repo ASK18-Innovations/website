@@ -227,6 +227,28 @@ Vertically stacks `BrandName` and `BrandTagline` via the `Stack` primitive.
 <BrandLockup showTagline={false} nameSize={5} /> {/* compact header */}
 ```
 
+### Logo and image assets (deferred)
+
+Text-only brand components are in use today. Image assets follow this layout under `public/`:
+
+| Directory | Asset type | Status |
+|-----------|------------|--------|
+| `public/brand/` | Official logo and wordmark | Not yet added — do not invent or redraw |
+| `public/favicons/` | Favicon, app icon, Apple touch icon sources | Empty — wire via `app/metadata.ts` when ready |
+| `public/icons/` | UI and social icons | Empty |
+| `public/images/` | Photography and illustrations | Empty |
+| `public/og/` | Open Graph share images (1200×630) | Empty — uncomment `openGraph.images` in metadata when ready |
+
+**Rules:**
+
+- Never place assets at the `public/` root — always use a subdirectory.
+- Never commit framework starter SVGs (Next.js, Vercel, etc.).
+- Never generate placeholder logos or OG images in code.
+- Reference assets by path (`/brand/logo.svg`, `/og/default.png`) in components and metadata — not hardcoded external URLs.
+- When `BrandLogo` is implemented, it reads from `public/brand/` only.
+
+See `docs/architecture.md` for full public asset conventions.
+
 ## Layout Primitives
 
 Spacing follows a consistent rem-based scale:

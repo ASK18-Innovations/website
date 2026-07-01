@@ -28,6 +28,12 @@ lib/              Shared utilities and helpers
   seo/            SEO helper utilities (building blocks only)
   utils/          General-purpose utilities
 styles/           Design tokens and global CSS
+public/           Static assets served at the site root
+  brand/          Official logo and wordmark files (when available)
+  favicons/       Favicon and app icon source files
+  icons/          UI and social icons
+  images/         General photography and illustrations
+  og/             Open Graph and social share images
 tests/            Automated test suites (placeholders)
 ```
 
@@ -151,12 +157,42 @@ When `SiteHeader` and `SiteFooter` are built, they import navigation from `@/con
 - One `<main>` landmark per page
 - Focus ring styles use `--ask18-focus-ring` token
 
+## Public Assets
+
+Static files in `public/` are served from the site root (`/brand/...`, `/og/...`, etc.). Default Next.js starter assets have been removed. Empty directories are tracked via `.gitkeep` until real files are added.
+
+### Directory layout
+
+| Path | Purpose |
+|------|---------|
+| `public/brand/` | Official ASK18 logo, wordmark, and brand marks (not yet added) |
+| `public/favicons/` | Source files for favicon, app icon, and Apple touch icon |
+| `public/icons/` | UI icons, social icons, and non-brand SVGs |
+| `public/images/` | Photography, illustrations, and general page imagery |
+| `public/og/` | Open Graph and Twitter card images (1200×630 recommended) |
+
+### Rules
+
+- **No starter assets:** Do not commit default framework logos or placeholder SVGs.
+- **No invented logos:** Official brand files go in `public/brand/` only when provided by brand guidelines.
+- **No root clutter:** Do not place assets directly in `public/` — use the appropriate subdirectory.
+- **Reference paths consistently:** Components and metadata use paths like `/og/default.png`, not hardcoded external URLs, unless defined in `config/`.
+- **Favicon wiring:** Prefer `app/favicon.ico` (Next.js convention) sourced from exports in `public/favicons/`, or configure `metadata.icons` in `app/metadata.ts`.
+- **OG images:** Default share image lives in `public/og/`; wire in `app/metadata.ts` when the asset is ready.
+- **Optimize before commit:** Use appropriately sized, compressed formats (SVG for icons, WebP/PNG for photos, PNG for OG).
+
+### Relationship to components
+
+- `components/brand/` — React components for text-based brand identity today; image-based `BrandLogo` will reference `public/brand/` when added.
+- `next/image` — Use for all raster assets from `public/images/` and `public/og/`.
+
 ## Conventions
 
 - Import shared modules via the `@/` path alias (maps to the repository root).
 - Design tokens live in `styles/` and are documented in `docs/design-system.md`.
 - Long-form copy lives in `content/`; structural values live in `config/`.
+- Static assets live in `public/` subdirectories; see [Public Assets](#public-assets).
 
 ## Current State
 
-The root layout wraps all routes in `AppShell` with centralized metadata and token-based typography. Layout primitives (`PageContainer`, `MainContent`) are ready for new pages. The starter homepage retains its existing markup until replaced.
+The root layout wraps all routes in `AppShell` with centralized metadata and token-based typography. Layout primitives (`PageContainer`, `MainContent`) are ready for new pages. Public asset directories are in place; brand logo and OG images are not yet committed. The starter homepage retains its existing markup until replaced.
