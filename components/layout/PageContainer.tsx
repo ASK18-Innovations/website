@@ -1,41 +1,12 @@
-type ContainerSize = "sm" | "md" | "lg" | "xl" | "prose" | "content";
+import { Container, type ContainerProps } from "@/components/primitives";
 
-type PageContainerProps = {
-  children: React.ReactNode;
-  /** Max-width preset mapped to design-token container variables. */
-  size?: ContainerSize;
-  className?: string;
-};
-
-const containerMaxWidth: Record<ContainerSize, string> = {
-  sm: "var(--ask18-container-sm)",
-  md: "var(--ask18-container-md)",
-  lg: "var(--ask18-container-lg)",
-  xl: "var(--ask18-container-xl)",
-  prose: "var(--ask18-container-prose)",
-  content: "var(--ask18-container-content)",
-};
+export type PageContainerProps = ContainerProps;
 
 /**
- * Centralized horizontal layout container.
- * Applies token-based max width and responsive horizontal padding.
+ * Page-level container — delegates to the `Container` primitive.
  */
-export function PageContainer({
-  children,
-  size = "content",
-  className,
-}: PageContainerProps) {
-  return (
-    <div
-      className={`mx-auto w-full${className ? ` ${className}` : ""}`}
-      style={{
-        maxWidth: containerMaxWidth[size],
-        paddingInline: "var(--ask18-container-padding-x)",
-      }}
-    >
-      {children}
-    </div>
-  );
+export function PageContainer(props: PageContainerProps) {
+  return <Container {...props} />;
 }
 
-export type { ContainerSize, PageContainerProps };
+export type { ContainerSize } from "@/components/primitives";

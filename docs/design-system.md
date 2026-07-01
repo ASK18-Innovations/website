@@ -4,7 +4,7 @@ Foundational tokens and style architecture for the ASK18 Innovations corporate w
 
 ## Status
 
-**Milestone 2.2 complete.** Color, spacing, radius, container, and typography tokens are centralized in CSS. Tailwind utilities are bridged via `@theme inline` in `app/globals.css`. Visual components are not yet implemented.
+**Milestone 2.2 complete.** Color, spacing, radius, container, and typography tokens are centralized in CSS. Tailwind utilities are bridged via `@theme inline` in `app/globals.css`. Layout primitives are available under `components/primitives/`.
 
 ## Token Sources
 
@@ -94,8 +94,124 @@ Tokens are available as Tailwind utilities via the `@theme` bridge:
 
 Prefer semantic token utilities (`bg-ask18-bg-primary`) over raw brand colors unless the design explicitly calls for a locked swatch.
 
+## Layout Primitives
+
+Reusable Server Components in `components/primitives/`. They handle structure and spacing only — no brand styling, business logic, or page-specific props.
+
+### Container
+
+**File:** `components/primitives/Container.tsx`
+
+Horizontally centers content with token-based max width and padding.
+
+| Prop | Default | Purpose |
+|------|---------|---------|
+| `size` | `"content"` | Max width preset (`sm`, `md`, `lg`, `xl`, `prose`, `content`) |
+| `className` | — | Optional layout classes |
+
+**Use when:** Wrapping page content that should align to the site grid. Every page section that needs consistent horizontal bounds should sit inside a `Container`.
+
+```tsx
+<Container size="content">{children}</Container>
+```
+
+`PageContainer` in `components/layout/` delegates to this primitive.
+
+### Section
+
+**File:** `components/primitives/Section.tsx`
+
+Semantic `<section>` with standardized vertical padding from the spacing scale.
+
+| Prop | Default | Purpose |
+|------|---------|---------|
+| `id` | — | Anchor target or `aria-labelledby` reference |
+| `spacing` | `"2xl"` | Vertical padding (`paddingBlock`) from spacing tokens |
+| `className` | — | Optional layout classes |
+
+**Use when:** Grouping related content blocks on a page. Prefer `<section>` over generic `<div>` for landmarks and document outline.
+
+```tsx
+<Section id="about" spacing="3xl">{children}</Section>
+```
+
+### Stack
+
+**File:** `components/primitives/Stack.tsx`
+
+Vertical flex layout with token-based gap.
+
+| Prop | Default | Purpose |
+|------|---------|---------|
+| `gap` | `"md"` | Space between children |
+| `align` | `"stretch"` | Cross-axis alignment (`start`, `center`, `end`, `stretch`) |
+| `className` | — | Optional layout classes |
+
+**Use when:** Arranging items in a single column — form fields, text blocks, lists of elements, or stacked buttons (when built).
+
+```tsx
+<Stack gap="lg" align="start">{children}</Stack>
+```
+
+### Grid
+
+**File:** `components/primitives/Grid.tsx`
+
+CSS grid with equal columns and token-based gap.
+
+| Prop | Default | Purpose |
+|------|---------|---------|
+| `columns` | `1` | Column count (`1`, `2`, `3`, `4`, `6`, `12`) |
+| `gap` | `"md"` | Space between grid items |
+| `className` | — | Optional layout classes |
+
+**Use when:** Laying out items in two or more columns — feature lists, card grids (when cards exist), or side-by-side content. Does not handle responsive breakpoints; wrap in responsive page logic or adjust `columns` at the page level when needed.
+
+```tsx
+<Grid columns={3} gap="xl">{children}</Grid>
+```
+
+### Divider
+
+**File:** `components/primitives/Divider.tsx`
+
+Semantic horizontal rule using `--ask18-border-default`.
+
+**Use when:** Separating content regions within a section or stack. Prefer over ad-hoc borders on arbitrary elements.
+
+```tsx
+<Stack gap="lg">
+  <BlockA />
+  <Divider />
+  <BlockB />
+</Stack>
+```
+
+### Composition example
+
+```tsx
+import { Container, Section, Stack, Grid, Divider } from "@/components/primitives";
+import { MainContent } from "@/components/layout";
+
+export default function ExamplePage() {
+  return (
+    <MainContent>
+      <Section id="features" spacing="3xl">
+        <Container>
+          <Stack gap="xl">
+            <Grid columns={3} gap="lg">{/* items */}</Grid>
+            <Divider />
+            {/* more content */}
+          </Stack>
+        </Container>
+      </Section>
+    </MainContent>
+  );
+}
+```
+
 ## Next Steps
 
 1. Build typography components under `components/typography/` using heading/body rhythm variables.
-2. Build primitives (`components/primitives/`) with focus ring and border tokens.
-3. Compose layout shell (`components/layout/`) once navigation design is approved.
+2. Build interactive primitives (buttons, links) with focus ring tokens.
+3. Compose header and footer in `components/layout/` once navigation design is approved.
