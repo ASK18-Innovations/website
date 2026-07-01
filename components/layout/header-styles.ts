@@ -38,4 +38,13 @@ export const mobileMenuButtonClassName = [
   focusRingClassName,
 ].join(" ");
 
+export const mobileMenuPanelClassName = [
+  "fixed inset-x-0 top-14 z-50",
+  "border-b border-ask18-border-default bg-ask18-bg-primary",
+  "px-ask18-lg py-ask18-lg md:hidden",
+].join(" ");
+
+export const mobileNavListClassName =
+  "flex w-full list-none flex-col items-start gap-ask18-md p-0 m-0";
+
 export const desktopNavListClassName = "flex items-center gap-ask18-md lg:gap-ask18-lg";

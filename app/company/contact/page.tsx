@@ -12,11 +12,14 @@ import {
   homeSectionSpacing,
   sectionContentGap,
 } from "@/components/sections/home/home-styles";
-import { Heading, Text } from "@/components/typography";
+import { Caption, Heading, Text } from "@/components/typography";
 import { routes } from "@/config/routes";
 import { siteConfig } from "@/config/site";
 import { contactPageContent } from "@/content/company/contact-page";
 import { createPageMetadata } from "@/lib/seo";
+
+const contactLinkClassName =
+  "rounded-ask18-sm text-ask18-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ask18-focus-ring";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Contact",
@@ -44,12 +47,26 @@ export default function ContactPage() {
             <Heading level={2} id={`${contactDetails.id}-heading`}>
               {contactDetails.title}
             </Heading>
-            <Link
-              href={`mailto:${siteConfig.email}`}
-              className="rounded-ask18-sm text-ask18-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ask18-focus-ring"
-            >
-              <Text as="span">{siteConfig.email}</Text>
-            </Link>
+            <Stack gap="md" align="start">
+              <Stack gap="xs" align="start">
+                <Caption as="p">{contactDetails.emailLabel}</Caption>
+                <Link
+                  href={`mailto:${siteConfig.email}`}
+                  className={contactLinkClassName}
+                >
+                  <Text as="span">{siteConfig.email}</Text>
+                </Link>
+              </Stack>
+              <Stack gap="xs" align="start">
+                <Caption as="p">{contactDetails.phoneLabel}</Caption>
+                <Link
+                  href={`tel:${siteConfig.phone.tel}`}
+                  className={contactLinkClassName}
+                >
+                  <Text as="span">{siteConfig.phone.display}</Text>
+                </Link>
+              </Stack>
+            </Stack>
           </Stack>
         </Container>
       </Section>

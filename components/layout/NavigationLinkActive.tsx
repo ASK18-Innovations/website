@@ -13,13 +13,24 @@ function isActivePath(pathname: string, href: NavItem["href"]): boolean {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
+export type NavigationLinkActiveProps = NavItem & {
+  onNavigate?: () => void;
+};
+
 /**
  * Client wrapper that resolves the active route for navigation links.
  */
-export function NavigationLinkActive(props: NavItem) {
+export function NavigationLinkActive({
+  onNavigate,
+  ...item
+}: NavigationLinkActiveProps) {
   const pathname = usePathname();
 
   return (
-    <NavigationLink {...props} isActive={isActivePath(pathname, props.href)} />
+    <NavigationLink
+      {...item}
+      isActive={isActivePath(pathname, item.href)}
+      onNavigate={onNavigate}
+    />
   );
 }

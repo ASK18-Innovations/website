@@ -1,6 +1,6 @@
 /**
  * Contact page content.
- * Email is sourced from `config/site.ts`.
+ * Email and phone are sourced from `config/site.ts`.
  */
 export const contactPageContent = {
   hero: {
@@ -10,6 +10,8 @@ export const contactPageContent = {
   contactDetails: {
     id: "contact-details",
     title: "Contact Details",
+    emailLabel: "Email",
+    phoneLabel: "Phone",
   },
   inquiryTypes: {
     id: "inquiry-types",

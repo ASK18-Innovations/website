@@ -35,16 +35,24 @@ export function SiteFooter() {
           <FooterNavigation />
 
           <Stack gap="sm" align="start">
-            <Link
-              href={`mailto:${siteConfig.email}`}
-              className={linkClassName}
-              aria-label={`Email ${siteConfig.name}`}
-            >
-              <Text as="span">{siteConfig.email}</Text>
-            </Link>
-
-            <Caption as="span">{siteConfig.copyright}</Caption>
+            <Caption as="p">Contact</Caption>
+            <Stack gap="xs" align="start">
+              <Link
+                href={`mailto:${siteConfig.email}`}
+                className={linkClassName}
+              >
+                <Text as="span">{siteConfig.email}</Text>
+              </Link>
+              <Link
+                href={`tel:${siteConfig.phone.tel}`}
+                className={linkClassName}
+              >
+                <Text as="span">{siteConfig.phone.display}</Text>
+              </Link>
+            </Stack>
           </Stack>
+
+          <Caption as="span">{siteConfig.copyright}</Caption>
         </Stack>
       </Container>
     </footer>

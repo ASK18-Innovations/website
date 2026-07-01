@@ -11,6 +11,8 @@ import {
 export type NavigationLinkProps = NavItem & {
   /** When true, applies active styles and `aria-current="page"`. */
   isActive?: boolean;
+  /** Called after navigation interaction (e.g. close mobile menu). */
+  onNavigate?: () => void;
 };
 
 /**
@@ -20,6 +22,7 @@ export function NavigationLink({
   label,
   href,
   isActive = false,
+  onNavigate,
 }: NavigationLinkProps) {
   return (
     <Link
@@ -28,6 +31,7 @@ export function NavigationLink({
         isActive ? navLinkActiveClassName : navLinkInactiveClassName
       }`}
       aria-current={isActive ? "page" : undefined}
+      onClick={onNavigate}
     >
       {label}
     </Link>

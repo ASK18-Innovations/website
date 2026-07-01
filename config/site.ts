@@ -6,7 +6,11 @@ export const siteConfig = {
   name: "ASK18 Innovations",
   tagline: "Engineering software that earns trust.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ask18innovations.com",
-  email: "contact@ask18innovations.com",
+  email: "ask18innovations@gmail.com",
+  phone: {
+    display: "+91 94947 56765",
+    tel: "+919494756765",
+  },
   social: {
     github: "https://github.com/ask18innovations",
     linkedin: "https://www.linkedin.com/company/ask18-innovations",

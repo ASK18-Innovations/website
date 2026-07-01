@@ -1,45 +1,77 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+
 import { primaryNavigation } from "@/config/navigation";
 
 import {
-  desktopNavListClassName,
   mobileMenuButtonClassName,
+  mobileMenuPanelClassName,
+  mobileNavListClassName,
 } from "./header-styles";
 import { NavigationLinkActive } from "./NavigationLinkActive";
 
-/**
- * Mobile navigation — compact menu control with accessible link targets.
- * Drawer interaction is deferred to a later milestone.
- */
-export function MobileNavigation() {
-  return (
-    <div className="flex items-center gap-ask18-sm md:hidden">
-      <nav aria-label="Mobile primary" className="sr-only">
-        <ul className={desktopNavListClassName}>
-          {primaryNavigation.map((item) => (
-            <li key={item.href}>
-              <NavigationLinkActive {...item} />
-            </li>
-          ))}
-        </ul>
-      </nav>
+const menuId = "mobile-navigation-menu";
 
+function MobileNavigationMenu() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  return (
+    <div className="md:hidden">
       <button
         type="button"
-        aria-label="Open menu"
-        aria-expanded="false"
-        aria-controls="mobile-navigation-menu"
+        aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-expanded={isOpen}
+        aria-controls={menuId}
         className={mobileMenuButtonClassName}
+        onClick={() => setIsOpen((open) => !open)}
       >
-        Menu
+        {isOpen ? "Close" : "Menu"}
       </button>
 
-      <div id="mobile-navigation-menu" aria-hidden="true" className="sr-only">
-        <ul>
-          {primaryNavigation.map((item) => (
-            <li key={item.href}>{item.label}</li>
-          ))}
-        </ul>
-      </div>
+      {isOpen ? (
+        <nav
+          id={menuId}
+          aria-label="Main"
+          className={mobileMenuPanelClassName}
+        >
+          <ul className={mobileNavListClassName}>
+            {primaryNavigation.map((item) => (
+              <li key={item.href}>
+                <NavigationLinkActive
+                  {...item}
+                  onNavigate={() => setIsOpen(false)}
+                />
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ) : null}
     </div>
   );
+}
+
+/**
+ * Mobile navigation with an accessible open/close menu panel.
+ */
+export function MobileNavigation() {
+  const pathname = usePathname();
+
+  return <MobileNavigationMenu key={pathname} />;
 }
