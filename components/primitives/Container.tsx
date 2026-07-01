@@ -1,7 +1,4 @@
-import {
-  containerMaxWidth,
-  type ContainerSize,
-} from "./constants";
+import { containerMaxWidth, type ContainerSize } from "./constants";
 
 export type ContainerProps = {
   children: React.ReactNode;

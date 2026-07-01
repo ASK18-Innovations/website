@@ -25,11 +25,7 @@ export function MobileNavigation() {
         </Text>
       </button>
 
-      <div
-        id="mobile-navigation-menu"
-        aria-hidden="true"
-        className="sr-only"
-      >
+      <div id="mobile-navigation-menu" aria-hidden="true" className="sr-only">
         <ul>
           {primaryNavigation.map((item) => (
             <li key={item.href}>

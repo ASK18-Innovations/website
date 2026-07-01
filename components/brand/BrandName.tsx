@@ -13,11 +13,7 @@ export type BrandNameProps = {
 /**
  * Text-only company name sourced from site configuration.
  */
-export function BrandName({
-  level,
-  size = 4,
-  className,
-}: BrandNameProps) {
+export function BrandName({ level, size = 4, className }: BrandNameProps) {
   if (level !== undefined) {
     return (
       <Heading level={level} size={size} className={className}>

@@ -6,7 +6,9 @@ import { sitemapRoutes } from "@/lib/seo/sitemap-routes";
 
 type SitemapEntry = MetadataRoute.Sitemap[number];
 
-function createSitemapEntry(path: (typeof sitemapRoutes)[number]): SitemapEntry {
+function createSitemapEntry(
+  path: (typeof sitemapRoutes)[number],
+): SitemapEntry {
   return {
     url: resolveAbsoluteUrl(path),
     lastModified: new Date(),

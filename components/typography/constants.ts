@@ -87,7 +87,10 @@ export const inlineCodeStyle: CSSProperties = {
   borderRadius: "var(--ask18-code-radius)",
 };
 
-export const headingTags: Record<HeadingLevel, "h1" | "h2" | "h3" | "h4" | "h5" | "h6"> = {
+export const headingTags: Record<
+  HeadingLevel,
+  "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+> = {
   1: "h1",
   2: "h2",
   3: "h3",

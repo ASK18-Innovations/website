@@ -1,8 +1,4 @@
-import {
-  getHeadingStyle,
-  headingTags,
-  type HeadingLevel,
-} from "./constants";
+import { getHeadingStyle, headingTags, type HeadingLevel } from "./constants";
 
 export type HeadingProps = {
   children: React.ReactNode;
@@ -28,11 +24,7 @@ export function Heading({
   const visualLevel = size ?? level;
 
   return (
-    <Tag
-      id={id}
-      className={className}
-      style={getHeadingStyle(visualLevel)}
-    >
+    <Tag id={id} className={className} style={getHeadingStyle(visualLevel)}>
       {children}
     </Tag>
   );

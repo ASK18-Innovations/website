@@ -27,7 +27,12 @@ export default function RootLayout({
       lang={siteConfig.language}
       className={`${geistSans.variable} ${geistMono.variable} h-full font-sans antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-background text-[length:var(--ask18-body-size)] leading-[var(--ask18-body-leading)] text-foreground">
+      <body
+        className={
+          "flex min-h-full flex-col bg-background text-foreground " +
+          "text-[length:var(--ask18-body-size)] leading-[var(--ask18-body-leading)]"
+        }
+      >
         <AppShell>{children}</AppShell>
       </body>
     </html>
