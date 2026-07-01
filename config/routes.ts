@@ -13,6 +13,9 @@ export const routes = {
   products: {
     index: "/products",
   },
+  services: {
+    index: "/services",
+  },
   legal: {
     privacy: "/legal/privacy",
     terms: "/legal/terms",
@@ -26,4 +29,5 @@ export type RoutePath =
   | (typeof routes)["home"]
   | (typeof routes.company)[keyof typeof routes.company]
   | (typeof routes.products)[keyof typeof routes.products]
+  | (typeof routes.services)[keyof typeof routes.services]
   | (typeof routes.legal)[keyof typeof routes.legal];

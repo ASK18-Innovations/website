@@ -14,6 +14,7 @@ type RoutePathFromNav =
   | typeof routes.home
   | typeof routes.company.about
   | typeof routes.products.index
+  | typeof routes.services.index
   | typeof routes.company.contact
   | typeof routes.legal.privacy
   | typeof routes.legal.terms;
@@ -23,6 +24,7 @@ export const navigationConfig = {
     { label: "Home", href: routes.home },
     { label: "About", href: routes.company.about },
     { label: "Products", href: routes.products.index },
+    { label: "Services", href: routes.services.index },
     { label: "Contact", href: routes.company.contact },
   ],
   footer: [
