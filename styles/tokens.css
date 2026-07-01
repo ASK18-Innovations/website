@@ -1,33 +1,105 @@
 /**
- * Design tokens for ASK18 Innovations.
- * Import into globals.css when the design system is wired up.
+ * ASK18 Innovations — design tokens
+ * Source of truth for color, spacing, radius, and layout values.
  */
 
 :root {
-  /* Brand colors — placeholders until brand palette is finalized */
-  --ask18-color-primary: #171717;
-  --ask18-color-secondary: #525252;
-  --ask18-color-accent: #2563eb;
+  /* ── Brand palette (locked) ─────────────────────────────────────────── */
+  --ask18-black: #111111;
+  --ask18-white: #ffffff;
+  --ask18-graphite: #2f343b;
+  --ask18-deep-indigo: #2f3e8f;
 
-  /* Surface */
-  --ask18-color-background: #ffffff;
-  --ask18-color-foreground: #171717;
-  --ask18-color-muted: #737373;
+  /* ── Neutral scale (derived from brand palette) ─────────────────────── */
+  --ask18-neutral-50: #f7f7f8;
+  --ask18-neutral-100: #ececee;
+  --ask18-neutral-200: #d8d9dc;
+  --ask18-neutral-300: #b4b6bc;
+  --ask18-neutral-400: #8a8d95;
+  --ask18-neutral-500: #63666e;
+  --ask18-neutral-600: #4a4e56;
+  --ask18-neutral-700: var(--ask18-graphite);
+  --ask18-neutral-800: #1f2227;
+  --ask18-neutral-900: var(--ask18-black);
 
-  /* Spacing scale */
+  /* ── Background ─────────────────────────────────────────────────────── */
+  --ask18-bg-primary: var(--ask18-white);
+  --ask18-bg-secondary: var(--ask18-neutral-50);
+  --ask18-bg-muted: var(--ask18-neutral-100);
+  --ask18-bg-inverse: var(--ask18-black);
+  --ask18-bg-accent-subtle: color-mix(
+    in srgb,
+    var(--ask18-deep-indigo) 6%,
+    var(--ask18-white)
+  );
+
+  /* ── Foreground / text ──────────────────────────────────────────────── */
+  --ask18-text-primary: var(--ask18-black);
+  --ask18-text-secondary: var(--ask18-graphite);
+  --ask18-text-muted: var(--ask18-neutral-500);
+  --ask18-text-inverse: var(--ask18-white);
+  --ask18-text-accent: var(--ask18-deep-indigo);
+
+  /* ── Border ─────────────────────────────────────────────────────────── */
+  --ask18-border-default: var(--ask18-neutral-200);
+  --ask18-border-strong: var(--ask18-neutral-300);
+  --ask18-border-inverse: var(--ask18-neutral-700);
+
+  /* ── Focus (Deep Indigo — accent use only) ──────────────────────────── */
+  --ask18-focus-ring: var(--ask18-deep-indigo);
+  --ask18-focus-ring-offset: var(--ask18-white);
+
+  /* ── Spacing scale ──────────────────────────────────────────────────── */
+  --ask18-space-0: 0;
+  --ask18-space-px: 1px;
   --ask18-space-xs: 0.25rem;
   --ask18-space-sm: 0.5rem;
   --ask18-space-md: 1rem;
   --ask18-space-lg: 1.5rem;
   --ask18-space-xl: 2rem;
   --ask18-space-2xl: 3rem;
+  --ask18-space-3xl: 4rem;
+  --ask18-space-4xl: 6rem;
 
-  /* Layout */
-  --ask18-content-max-width: 72rem;
-  --ask18-section-padding-y: var(--ask18-space-2xl);
-
-  /* Radius */
+  /* ── Radius scale ───────────────────────────────────────────────────── */
+  --ask18-radius-none: 0;
   --ask18-radius-sm: 0.25rem;
   --ask18-radius-md: 0.5rem;
-  --ask18-radius-lg: 1rem;
+  --ask18-radius-lg: 0.75rem;
+  --ask18-radius-xl: 1rem;
+  --ask18-radius-full: 9999px;
+
+  /* ── Container widths ───────────────────────────────────────────────── */
+  --ask18-container-sm: 40rem;
+  --ask18-container-md: 48rem;
+  --ask18-container-lg: 64rem;
+  --ask18-container-xl: 72rem;
+  --ask18-container-prose: 42rem;
+  --ask18-container-content: var(--ask18-container-xl);
+  --ask18-container-padding-x: var(--ask18-space-lg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ask18-bg-primary: var(--ask18-black);
+    --ask18-bg-secondary: var(--ask18-neutral-800);
+    --ask18-bg-muted: var(--ask18-neutral-700);
+    --ask18-bg-inverse: var(--ask18-white);
+    --ask18-bg-accent-subtle: color-mix(
+      in srgb,
+      var(--ask18-deep-indigo) 12%,
+      var(--ask18-black)
+    );
+
+    --ask18-text-primary: var(--ask18-white);
+    --ask18-text-secondary: var(--ask18-neutral-300);
+    --ask18-text-muted: var(--ask18-neutral-400);
+    --ask18-text-inverse: var(--ask18-black);
+
+    --ask18-border-default: var(--ask18-neutral-700);
+    --ask18-border-strong: var(--ask18-neutral-600);
+    --ask18-border-inverse: var(--ask18-neutral-300);
+
+    --ask18-focus-ring-offset: var(--ask18-black);
+  }
 }
