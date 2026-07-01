@@ -4,7 +4,15 @@ import { homeContent } from "@/content/company/home";
 import { akshAlgoProduct } from "@/content/products/akshalgo";
 import { gopalaMithraProduct } from "@/content/products/gopalamithra";
 
-import { borderedItemStyle } from "./cta-styles";
+import {
+  cardClassName,
+  cardContentGap,
+  cardStyle,
+  gridListClassName,
+  gridListStyle,
+  homeSectionSpacing,
+  sectionContentGap,
+} from "./home-styles";
 
 const featuredProducts = [akshAlgoProduct, gopalaMithraProduct] as const;
 
@@ -12,31 +20,35 @@ export function FeaturedProductsSection() {
   const { id, title } = homeContent.featuredProducts;
 
   return (
-    <Section id={id} spacing="3xl" aria-labelledby={`${id}-heading`}>
+    <Section
+      id={id}
+      spacing={homeSectionSpacing}
+      aria-labelledby={`${id}-heading`}
+    >
       <Container>
-        <Stack gap="xl" align="start">
+        <Stack gap={sectionContentGap} align="start">
           <Heading level={2} id={`${id}-heading`}>
             {title}
           </Heading>
 
-          <ul
-            className="grid w-full grid-cols-1 sm:grid-cols-2"
-            style={{
-              gap: "var(--ask18-space-md)",
-              listStyle: "none",
-              margin: 0,
-              padding: 0,
-            }}
-          >
+          <ul className={gridListClassName} style={gridListStyle}>
             {featuredProducts.map((product) => (
               <li key={product.name}>
-                <article style={borderedItemStyle}>
-                  <Stack gap="xs" align="start">
-                    <Heading level={3} size={5}>
+                <article className={cardClassName} style={cardStyle}>
+                  <Stack gap={cardContentGap} align="start">
+                    <Heading level={3} size={4}>
                       {product.name}
                     </Heading>
                     <Text variant="muted">{product.description}</Text>
-                    <Caption as="p">Status: {product.status}</Caption>
+                    <Text className="max-w-[var(--ask18-prose-measure)]">
+                      {product.summary}
+                    </Text>
+                    <Caption as="p">
+                      Status:{" "}
+                      <span style={{ color: "var(--ask18-text-accent)" }}>
+                        {product.status}
+                      </span>
+                    </Caption>
                   </Stack>
                 </article>
               </li>

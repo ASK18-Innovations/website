@@ -8,22 +8,29 @@ import { homeContent } from "@/content/company/home";
 
 import {
   buttonBaseClassName,
+  homeHeroSpacing,
   primaryButtonStyle,
   secondaryButtonStyle,
-} from "./cta-styles";
+} from "./home-styles";
 
 export function HomeHero() {
   const { hero } = homeContent;
 
   return (
-    <Section spacing="4xl" aria-labelledby="home-hero-heading">
+    <Section spacing={homeHeroSpacing} aria-labelledby="home-hero-heading">
       <Container>
         <Stack gap="2xl" align="start">
-          <Stack gap="lg" align="start">
-            <Heading level={1} size={2} id="home-hero-heading">
+          <Stack
+            gap="xl"
+            align="start"
+            className="max-w-[var(--ask18-prose-measure)]"
+          >
+            <Heading level={1} size={1} id="home-hero-heading">
               {siteConfig.tagline}
             </Heading>
-            <Lead>{hero.supportingText}</Lead>
+            <Lead className="max-w-[var(--ask18-prose-measure)]">
+              {hero.supportingText}
+            </Lead>
           </Stack>
 
           <div

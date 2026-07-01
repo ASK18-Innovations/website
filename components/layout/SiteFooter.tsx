@@ -21,7 +21,7 @@ export function SiteFooter() {
         borderTopWidth: "1px",
         borderTopStyle: "solid",
         borderTopColor: "var(--ask18-border-default)",
-        paddingBlock: "var(--ask18-space-3xl)",
+        paddingBlock: "var(--ask18-space-2xl)",
       }}
     >
       <Container>

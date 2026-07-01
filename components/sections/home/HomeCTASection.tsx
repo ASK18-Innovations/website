@@ -7,8 +7,9 @@ import { homeContent } from "@/content/company/home";
 
 import {
   buttonBaseClassName,
+  homeSectionSpacing,
   primaryButtonStyle,
-} from "./cta-styles";
+} from "./home-styles";
 
 export function HomeCTASection() {
   const { id, headline, buttonLabel } = homeContent.cta;
@@ -16,13 +17,17 @@ export function HomeCTASection() {
   return (
     <Section
       id={id}
-      spacing="4xl"
+      spacing={homeSectionSpacing}
       className="border-t border-ask18-border-default"
       aria-labelledby={`${id}-heading`}
     >
       <Container>
-        <Stack gap="xl" align="start">
-          <Heading level={2} id={`${id}-heading`} size={3}>
+        <Stack
+          gap="2xl"
+          align="start"
+          className="max-w-[var(--ask18-prose-measure)]"
+        >
+          <Heading level={2} id={`${id}-heading`} size={2}>
             {headline}
           </Heading>
 

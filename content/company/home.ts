@@ -51,7 +51,28 @@ export const homeContent = {
   process: {
     id: "our-process",
     title: "Our Process",
-    items: ["Discover", "Design", "Engineer", "Deploy", "Support"],
+    items: [
+      {
+        step: "Discover",
+        description: "Understand the problem before writing code.",
+      },
+      {
+        step: "Design",
+        description: "Shape the system before implementation.",
+      },
+      {
+        step: "Engineer",
+        description: "Build with clarity, reliability, and maintainability.",
+      },
+      {
+        step: "Deploy",
+        description: "Release with confidence and production discipline.",
+      },
+      {
+        step: "Support",
+        description: "Improve through feedback and long-term ownership.",
+      },
+    ],
   },
   cta: {
     id: "contact",
