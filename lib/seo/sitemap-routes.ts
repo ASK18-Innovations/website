@@ -9,4 +9,6 @@ export const sitemapRoutes: readonly RoutePath[] = [
   routes.company.about,
   routes.products.index,
   routes.company.contact,
+  routes.legal.privacy,
+  routes.legal.terms,
 ];
