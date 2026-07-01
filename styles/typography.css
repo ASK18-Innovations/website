@@ -72,6 +72,27 @@
   --ask18-body-lg-size: var(--ask18-text-lg);
   --ask18-body-lg-leading: var(--ask18-leading-relaxed);
 
+  /* ── Lead (introductory body) ───────────────────────────────────────── */
+  --ask18-lead-size: var(--ask18-body-lg-size);
+  --ask18-lead-leading: var(--ask18-body-lg-leading);
+  --ask18-lead-color: var(--ask18-text-secondary);
+  --ask18-lead-weight: var(--ask18-font-normal);
+
+  /* ── Caption (supporting text) ──────────────────────────────────────── */
+  --ask18-caption-size: var(--ask18-text-sm);
+  --ask18-caption-leading: var(--ask18-body-sm-leading);
+  --ask18-caption-color: var(--ask18-text-muted);
+  --ask18-caption-weight: var(--ask18-font-normal);
+
+  /* ── Inline code ────────────────────────────────────────────────────── */
+  --ask18-code-font: var(--ask18-font-mono);
+  --ask18-code-size: var(--ask18-text-sm);
+  --ask18-code-color: var(--ask18-text-primary);
+  --ask18-code-background: var(--ask18-bg-muted);
+  --ask18-code-padding-x: var(--ask18-space-xs);
+  --ask18-code-padding-y: var(--ask18-space-px);
+  --ask18-code-radius: var(--ask18-radius-sm);
+
   /* ── Readable prose ─────────────────────────────────────────────────── */
   --ask18-prose-max-width: var(--ask18-container-prose);
   --ask18-prose-measure: 65ch;

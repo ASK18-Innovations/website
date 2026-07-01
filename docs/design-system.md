@@ -4,7 +4,7 @@ Foundational tokens and style architecture for the ASK18 Innovations corporate w
 
 ## Status
 
-**Milestone 2.2 complete.** Color, spacing, radius, container, and typography tokens are centralized in CSS. Tailwind utilities are bridged via `@theme inline` in `app/globals.css`. Layout primitives are available under `components/primitives/`.
+**Milestone 2.2 complete.** Color, spacing, radius, container, and typography tokens are centralized in CSS. Layout primitives live under `components/primitives/`. Typography components live under `components/typography/`.
 
 ## Token Sources
 
@@ -43,9 +43,119 @@ Typography is functional and restrained — no decorative treatments.
 - **Body:** Regular weight, relaxed line height (`--ask18-leading-relaxed`) for long-form readability.
 - **Prose:** Long-form content is capped at `--ask18-prose-measure` (65ch) or `--ask18-prose-max-width` (42rem container).
 - **Font stacks:** Geist Sans (primary) and Geist Mono (code) via Next.js font loading; fallbacks defined in `--ask18-font-sans` / `--ask18-font-mono`.
-- Token files define variables only — no global `h1`/`p` element rules — so existing pages are not restyled until typography components are built.
+- Token files define variables only — no global `h1`/`p` element rules — so existing pages are not restyled until they adopt typography components.
 
-## Spacing Philosophy
+## Typography Components
+
+Reusable Server Components in `components/typography/`. All styles derive from `styles/typography.css` tokens via `components/typography/constants.ts`.
+
+### Heading
+
+**File:** `components/typography/Heading.tsx`
+
+Renders semantic `h1`–`h6` with token-based size, weight, tracking, and color.
+
+| Prop | Default | Purpose |
+|------|---------|---------|
+| `level` | required | Semantic heading level (document outline) |
+| `size` | `level` | Visual size override without changing semantics |
+| `id` | — | Anchor target or `aria-labelledby` reference |
+| `className` | — | Optional utility classes |
+
+**Use when:** Page titles, section titles, and any heading in the document outline. Pick `level` by hierarchy, not appearance.
+
+**Do not use when:** Styling non-heading text — use `Text` or `Lead`. Do not skip heading levels for visual convenience; use `size` to adjust appearance instead.
+
+```tsx
+<Heading level={1}>Page title</Heading>
+<Heading level={2} size={3}>Visually smaller h2</Heading>
+```
+
+### Text
+
+**File:** `components/typography/Text.tsx`
+
+Standard body copy with consistent rhythm.
+
+| Prop | Default | Purpose |
+|------|---------|---------|
+| `variant` | `"default"` | `"default"` or `"muted"` text color |
+| `as` | `"p"` | Render as `p`, `span`, or `div` |
+| `className` | — | Optional utility classes |
+
+**Use when:** Paragraphs, descriptions, and general body content within sections.
+
+**Do not use when:** Page intros below a title — use `Lead`. Fine print or labels — use `Caption`. Code fragments — use `Code`.
+
+```tsx
+<Text>Primary body copy.</Text>
+<Text variant="muted">Secondary detail.</Text>
+```
+
+### Lead
+
+**File:** `components/typography/Lead.tsx`
+
+Introductory paragraph — larger size, secondary color, relaxed line height.
+
+**Use when:** Opening summary directly below a page or section heading (before main body content).
+
+**Do not use when:** General paragraphs (`Text`), captions (`Caption`), or multiple lead-style blocks on the same page — one lead per major content block is sufficient.
+
+```tsx
+<Heading level={1}>About ASK18</Heading>
+<Lead>Building intelligent solutions for enterprise.</Lead>
+```
+
+### Caption
+
+**File:** `components/typography/Caption.tsx`
+
+Small supporting text using `--ask18-caption-*` tokens (sm size, muted color).
+
+| Prop | Default | Purpose |
+|------|---------|---------|
+| `as` | `"p"` | Render as `p` or `span` |
+| `className` | — | Optional utility classes |
+
+**Use when:** Image credits, form hints, footnotes, timestamps, and metadata labels.
+
+**Do not use when:** Primary content (`Text`), headings (`Heading`), or text that must meet the base body size minimum — captions are supporting only.
+
+```tsx
+<Caption as="span">Last updated March 2026</Caption>
+```
+
+### Code
+
+**File:** `components/typography/Code.tsx`
+
+Inline `<code>` with mono font, muted background, and token-based padding. No syntax highlighting.
+
+**Use when:** Short inline code references — file names, commands, API keys, variable names.
+
+**Do not use when:** Multi-line code blocks (defer to a future `Pre`/`CodeBlock` component). Command-line UI or terminal output.
+
+```tsx
+<Text>Run <Code>npm run build</Code> to verify.</Text>
+```
+
+### Typography composition example
+
+```tsx
+import { Heading, Text, Lead, Caption, Code } from "@/components/typography";
+import { Stack } from "@/components/primitives";
+
+<Stack gap="md">
+  <Heading level={1}>Products</Heading>
+  <Lead>Explore our enterprise platform offerings.</Lead>
+  <Text>Detailed product description.</Text>
+  <Caption>Prices subject to change.</Caption>
+  <Text>Install with <Code>npm install</Code>.</Text>
+</Stack>
+```
+
+## Layout Primitives
 
 Spacing follows a consistent rem-based scale:
 
@@ -212,6 +322,6 @@ export default function ExamplePage() {
 
 ## Next Steps
 
-1. Build typography components under `components/typography/` using heading/body rhythm variables.
-2. Build interactive primitives (buttons, links) with focus ring tokens.
-3. Compose header and footer in `components/layout/` once navigation design is approved.
+1. Build interactive primitives (buttons, links) with focus ring tokens.
+2. Compose header and footer in `components/layout/` once navigation design is approved.
+3. Add multi-line code block component when documentation pages ship.
