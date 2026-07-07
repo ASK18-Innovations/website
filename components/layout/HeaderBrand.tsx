@@ -2,18 +2,12 @@ import Link from "next/link";
 
 import { routes } from "@/config/routes";
 import { siteConfig } from "@/config/site";
-import { BrandName } from "@/components/brand";
+import { BrandLogo, BrandName } from "@/components/brand";
 
 import { brandLinkClassName } from "./header-styles";
 
 /**
- * Header brand area — text-only today, structured for a future official logo.
- *
- * Future integration:
- * ```tsx
- * <BrandLogo aria-hidden="true" />
- * <BrandName size={6} />
- * ```
+ * Header brand area — official symbol with company name.
  */
 export function HeaderBrand() {
   return (
@@ -23,7 +17,7 @@ export function HeaderBrand() {
       aria-label={`${siteConfig.name} home`}
     >
       <span className="flex items-center gap-ask18-sm">
-        {/* Future: <BrandLogo /> */}
+        <BrandLogo decorative />
         <BrandName size={6} />
       </span>
     </Link>
