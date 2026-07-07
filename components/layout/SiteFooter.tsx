@@ -2,58 +2,58 @@ import Link from "next/link";
 
 import { siteConfig } from "@/config/site";
 import { BrandLockup } from "@/components/brand";
-import { Container, Stack } from "@/components/primitives";
+import { Container } from "@/components/primitives";
 import { Caption, Text } from "@/components/typography";
 
 import { FooterNavigation } from "./FooterNavigation";
-
-const linkClassName =
-  "inline-flex rounded-ask18-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ask18-focus-ring";
+import {
+  footerBrandColumnClassName,
+  footerClassName,
+  footerContactColumnClassName,
+  footerContactLinkClassName,
+  footerCopyrightClassName,
+  footerGridClassName,
+} from "./footer-styles";
 
 /**
  * Site-wide footer with brand identity, navigation, contact, and copyright.
  */
 export function SiteFooter() {
   return (
-    <footer
-      className="bg-ask18-bg-primary"
-      style={{
-        borderTopWidth: "1px",
-        borderTopStyle: "solid",
-        borderTopColor: "var(--ask18-border-default)",
-        paddingBlock: "var(--ask18-space-2xl)",
-      }}
-    >
+    <footer className={footerClassName}>
       <Container>
-        <Stack gap="2xl" align="start">
-          <BrandLockup
-            showTagline
-            nameSize={5}
-            taglineVariant="text"
-          />
+        <div className={footerGridClassName}>
+          <div className={footerBrandColumnClassName}>
+            <BrandLockup showTagline nameSize={5} taglineVariant="text" />
+          </div>
 
           <FooterNavigation />
 
-          <Stack gap="sm" align="start">
+          <div className={footerContactColumnClassName}>
             <Caption as="p">Contact</Caption>
-            <Stack gap="xs" align="start">
-              <Link
-                href={`mailto:${siteConfig.email}`}
-                className={linkClassName}
-              >
-                <Text as="span">{siteConfig.email}</Text>
-              </Link>
-              <Link
-                href={`tel:${siteConfig.phone.tel}`}
-                className={linkClassName}
-              >
-                <Text as="span">{siteConfig.phone.display}</Text>
-              </Link>
-            </Stack>
-          </Stack>
+            <Link
+              href={`mailto:${siteConfig.email}`}
+              className={footerContactLinkClassName}
+            >
+              <Text as="span" className="break-words">
+                {siteConfig.email}
+              </Text>
+            </Link>
+            <Link
+              href={siteConfig.whatsapp.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={siteConfig.whatsapp.ariaLabel}
+              className={footerContactLinkClassName}
+            >
+              <Text as="span">{siteConfig.phone.display}</Text>
+            </Link>
+          </div>
 
-          <Caption as="span">{siteConfig.copyright}</Caption>
-        </Stack>
+          <Caption as="span" className={footerCopyrightClassName}>
+            {siteConfig.copyright}
+          </Caption>
+        </div>
       </Container>
     </footer>
   );

@@ -28,12 +28,18 @@ function MobileNavigationMenu() {
       }
     }
 
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
     document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, [isOpen]);
 
   return (
-    <div className="md:hidden">
+    <div className="shrink-0 md:hidden">
       <button
         type="button"
         aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -56,6 +62,7 @@ function MobileNavigationMenu() {
               <li key={item.href}>
                 <NavigationLinkActive
                   {...item}
+                  density="menu"
                   onNavigate={() => setIsOpen(false)}
                 />
               </li>

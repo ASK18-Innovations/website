@@ -3,6 +3,11 @@ import {
   primaryNavigation,
 } from "@/config/navigation";
 
+import {
+  footerLinkItemClassName,
+  footerLinkListClassName,
+  footerNavColumnClassName,
+} from "./footer-styles";
 import { NavigationLink } from "./NavigationLink";
 
 /**
@@ -11,33 +16,22 @@ import { NavigationLink } from "./NavigationLink";
  */
 export function FooterNavigation() {
   return (
-    <nav aria-label="Footer">
-      <div
-        className="flex flex-col sm:flex-row sm:flex-wrap"
-        style={{ gap: "var(--ask18-space-2xl)" }}
-      >
-        <ul
-          className="flex flex-wrap items-center"
-          style={{ gap: "var(--ask18-space-lg)" }}
-        >
-          {primaryNavigation.map((item) => (
-            <li key={item.href}>
-              <NavigationLink {...item} />
-            </li>
-          ))}
-        </ul>
+    <nav aria-label="Footer" className={footerNavColumnClassName}>
+      <ul className={footerLinkListClassName}>
+        {primaryNavigation.map((item) => (
+          <li key={item.href} className={footerLinkItemClassName}>
+            <NavigationLink {...item} />
+          </li>
+        ))}
+      </ul>
 
-        <ul
-          className="flex flex-wrap items-center"
-          style={{ gap: "var(--ask18-space-lg)" }}
-        >
-          {footerNavigation.map((item) => (
-            <li key={item.href}>
-              <NavigationLink {...item} />
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ul className={footerLinkListClassName}>
+        {footerNavigation.map((item) => (
+          <li key={item.href} className={footerLinkItemClassName}>
+            <NavigationLink {...item} />
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 }

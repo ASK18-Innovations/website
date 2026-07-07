@@ -51,6 +51,8 @@ export const philosophyCardClassName =
 
 export const gridListClassName = "grid w-full grid-cols-1 sm:grid-cols-2";
 
+export const gridListItemClassName = "min-w-0";
+
 export const gridListStyle = {
   gap: "var(--ask18-space-lg)",
   listStyle: "none",

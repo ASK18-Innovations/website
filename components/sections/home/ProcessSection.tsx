@@ -6,6 +6,7 @@ import {
   cardClassName,
   cardContentGap,
   cardStyle,
+  gridListItemClassName,
   gridListStyle,
   homeSectionSpacing,
   processGridClassName,
@@ -29,7 +30,7 @@ export function ProcessSection() {
 
           <ol className={processGridClassName} style={gridListStyle}>
             {items.map(({ step, description }, index) => (
-              <li key={step} className={cardClassName} style={cardStyle}>
+              <li key={step} className={`${gridListItemClassName} ${cardClassName}`} style={cardStyle}>
                 <Stack gap={cardContentGap} align="start">
                   <Text as="span" variant="muted">
                     {String(index + 1).padStart(2, "0")}

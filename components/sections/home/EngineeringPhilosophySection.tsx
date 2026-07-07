@@ -4,10 +4,11 @@ import { homeContent } from "@/content/company/home";
 
 import {
   cardStyle,
+  gridListItemClassName,
+  gridListStyle,
   homeSectionSpacing,
   philosophyCardClassName,
   philosophyGridClassName,
-  gridListStyle,
   sectionContentGap,
 } from "./home-styles";
 
@@ -30,7 +31,7 @@ export function EngineeringPhilosophySection() {
             {items.map((principle) => (
               <li
                 key={principle}
-                className={philosophyCardClassName}
+                className={`${gridListItemClassName} ${philosophyCardClassName}`}
                 style={cardStyle}
               >
                 <Text as="span" className="font-medium">

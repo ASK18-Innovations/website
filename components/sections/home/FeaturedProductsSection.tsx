@@ -9,6 +9,7 @@ import {
   cardContentGap,
   cardStyle,
   gridListClassName,
+  gridListItemClassName,
   gridListStyle,
   homeSectionSpacing,
   sectionContentGap,
@@ -33,7 +34,7 @@ export function FeaturedProductsSection() {
 
           <ul className={gridListClassName} style={gridListStyle}>
             {featuredProducts.map((product) => (
-              <li key={product.name}>
+              <li key={product.name} className={gridListItemClassName}>
                 <article className={cardClassName} style={cardStyle}>
                   <Stack gap={cardContentGap} align="start">
                     <Heading level={3} size={4}>

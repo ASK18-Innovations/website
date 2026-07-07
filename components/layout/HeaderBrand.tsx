@@ -4,7 +4,7 @@ import { routes } from "@/config/routes";
 import { siteConfig } from "@/config/site";
 import { BrandLogo, BrandName } from "@/components/brand";
 
-import { brandLinkClassName } from "./header-styles";
+import { brandLinkClassName, brandLockupClassName, brandNameClassName } from "./header-styles";
 
 /**
  * Header brand area — official symbol with company name.
@@ -16,9 +16,9 @@ export function HeaderBrand() {
       className={brandLinkClassName}
       aria-label={`${siteConfig.name} home`}
     >
-      <span className="flex items-center gap-ask18-sm">
-        <BrandLogo decorative />
-        <BrandName size={6} />
+      <span className={brandLockupClassName}>
+        <BrandLogo decorative className="shrink-0" />
+        <BrandName size={6} className={brandNameClassName} />
       </span>
     </Link>
   );

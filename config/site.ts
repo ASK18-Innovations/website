@@ -2,6 +2,11 @@
  * Central site identity and contact configuration.
  * All company-facing values must be defined here — never hardcoded in pages or components.
  */
+const whatsappNumber = "919494756765";
+
+const whatsappMessage =
+  "Hello ASK18 Innovations, I would like to discuss a software project.";
+
 export const siteConfig = {
   name: "ASK18 Innovations",
   tagline: "Engineering software that earns trust.",
@@ -9,7 +14,13 @@ export const siteConfig = {
   email: "ask18innovations@gmail.com",
   phone: {
     display: "+91 94947 56765",
-    tel: "+919494756765",
+    tel: `+${whatsappNumber}`,
+    whatsappNumber,
+  },
+  whatsapp: {
+    message: whatsappMessage,
+    ariaLabel: "Chat with ASK18 Innovations on WhatsApp",
+    url: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
   },
   social: {
     github: "https://github.com/ask18innovations",

@@ -27,6 +27,7 @@ export const contactPageContent = {
   cta: {
     title: "Start with a clear problem. Build with discipline.",
     buttonLabel: "Email ASK18",
+    whatsappButtonLabel: "Chat on WhatsApp",
   },
 } as const;
 

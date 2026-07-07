@@ -6,6 +6,7 @@ import {
   cardClassName,
   cardStyle,
   gridListClassName,
+  gridListItemClassName,
   gridListStyle,
   homeSectionSpacing,
   sectionContentGap,
@@ -28,7 +29,7 @@ export function WhyAsk18Section() {
 
           <ul className={gridListClassName} style={gridListStyle}>
             {items.map((item) => (
-              <li key={item} className={cardClassName} style={cardStyle}>
+              <li key={item} className={`${gridListItemClassName} ${cardClassName}`} style={cardStyle}>
                 <Text as="span" className="font-medium">
                   {item}
                 </Text>

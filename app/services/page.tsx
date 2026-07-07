@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 
 import { MainContent } from "@/components/layout";
+import { ServiceBadge, serviceCardHeadingRowClassName } from "@/components/services";
 import { Container, Section, Stack } from "@/components/primitives";
 import { PageCTA, PageHero } from "@/components/sections/page";
 import {
   cardContentGap,
   homeSectionSpacing,
 } from "@/components/sections/home/home-styles";
-import { Caption, Heading, Text } from "@/components/typography";
+import { Heading, Text } from "@/components/typography";
 import { routes } from "@/config/routes";
 import { servicesPageContent } from "@/content/services/page";
 import { createPageMetadata } from "@/lib/seo";
@@ -54,21 +55,18 @@ export default function ServicesPage() {
                 >
                   <Stack gap={cardContentGap} align="start">
                     <Stack gap="xs" align="start">
-                      <Heading level={3} size={4}>
-                        {service.name}
-                      </Heading>
+                      <div className={serviceCardHeadingRowClassName}>
+                        <Heading level={3} size={4} className="min-w-0">
+                          {service.name}
+                        </Heading>
+                        {"badge" in service && service.badge ? (
+                          <ServiceBadge>{service.badge}</ServiceBadge>
+                        ) : null}
+                      </div>
                       <Text variant="muted">{service.subtitle}</Text>
                     </Stack>
 
                     <Text className="font-medium">{service.price}</Text>
-
-                    {"badge" in service && service.badge ? (
-                      <Caption as="p">
-                        <span style={{ color: "var(--ask18-text-accent)" }}>
-                          {service.badge}
-                        </span>
-                      </Caption>
-                    ) : null}
 
                     <Text>{service.description}</Text>
                   </Stack>

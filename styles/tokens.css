@@ -77,6 +77,16 @@
   --ask18-container-prose: 42rem;
   --ask18-container-content: var(--ask18-container-xl);
   --ask18-container-padding-x: var(--ask18-space-lg);
+
+  /* ── Header heights (align with h-14 / h-16 utilities) ─────────────── */
+  --ask18-header-height-mobile: 3.5rem;
+  --ask18-header-height-desktop: 4rem;
+}
+
+@media (width < 40rem) {
+  :root {
+    --ask18-container-padding-x: var(--ask18-space-md);
+  }
 }
 
 @media (prefers-color-scheme: dark) {

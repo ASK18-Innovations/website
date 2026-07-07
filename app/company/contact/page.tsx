@@ -8,6 +8,7 @@ import {
   cardClassName,
   cardStyle,
   gridListClassName,
+  gridListItemClassName,
   gridListStyle,
   homeSectionSpacing,
   sectionContentGap,
@@ -54,7 +55,7 @@ export default function ContactPage() {
                   href={`mailto:${siteConfig.email}`}
                   className={contactLinkClassName}
                 >
-                  <Text as="span">{siteConfig.email}</Text>
+                  <Text as="span" className="break-words">{siteConfig.email}</Text>
                 </Link>
               </Stack>
               <Stack gap="xs" align="start">
@@ -83,7 +84,7 @@ export default function ContactPage() {
             </Heading>
             <ul className={gridListClassName} style={gridListStyle}>
               {inquiryTypes.items.map((item) => (
-                <li key={item} className={cardClassName} style={cardStyle}>
+                <li key={item} className={`${gridListItemClassName} ${cardClassName}`} style={cardStyle}>
                   <Text as="span" className="font-medium">
                     {item}
                   </Text>
@@ -98,6 +99,11 @@ export default function ContactPage() {
         title={cta.title}
         buttonLabel={cta.buttonLabel}
         href={`mailto:${siteConfig.email}`}
+        secondaryButton={{
+          label: cta.whatsappButtonLabel,
+          href: siteConfig.whatsapp.url,
+          ariaLabel: siteConfig.whatsapp.ariaLabel,
+        }}
       />
     </MainContent>
   );

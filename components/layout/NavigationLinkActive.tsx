@@ -4,6 +4,7 @@ import type { NavItem } from "@/config/navigation";
 import { usePathname } from "next/navigation";
 
 import { NavigationLink } from "./NavigationLink";
+import type { NavigationLinkDensity } from "./NavigationLink";
 
 function isActivePath(pathname: string, href: NavItem["href"]): boolean {
   if (href === "/") {
@@ -15,6 +16,7 @@ function isActivePath(pathname: string, href: NavItem["href"]): boolean {
 
 export type NavigationLinkActiveProps = NavItem & {
   onNavigate?: () => void;
+  density?: NavigationLinkDensity;
 };
 
 /**
@@ -22,6 +24,7 @@ export type NavigationLinkActiveProps = NavItem & {
  */
 export function NavigationLinkActive({
   onNavigate,
+  density,
   ...item
 }: NavigationLinkActiveProps) {
   const pathname = usePathname();
@@ -29,6 +32,7 @@ export function NavigationLinkActive({
   return (
     <NavigationLink
       {...item}
+      density={density}
       isActive={isActivePath(pathname, item.href)}
       onNavigate={onNavigate}
     />

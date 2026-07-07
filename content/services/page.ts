@@ -19,7 +19,7 @@ export const servicesPageContent = {
       id: "business-starter",
       name: "Business Starter",
       subtitle: "Professional Landing Page",
-      price: "Starting at ₹19,999",
+      price: "₹19,999",
       description:
         "Professional landing page or single-page website for startups, professionals, and local businesses.",
     },
@@ -36,7 +36,7 @@ export const servicesPageContent = {
       id: "business-growth",
       name: "Business Growth",
       subtitle: "Advanced Business Website",
-      price: "₹59,999",
+      price: "Starting at ₹59,999",
       description:
         "Advanced business website with custom pages, blog or CMS readiness, enhanced SEO, performance optimization, analytics, and scalable architecture.",
     },
@@ -44,7 +44,7 @@ export const servicesPageContent = {
       id: "business-operations-dashboard",
       name: "Business Operations Dashboard",
       subtitle: "Business Analytics & Operations",
-      price: "₹79,999",
+      price: "Starting at ₹79,999",
       description:
         "Secure admin dashboard for managing customers, reports, inventory, sales, employees, or business operations.",
     },
@@ -52,7 +52,7 @@ export const servicesPageContent = {
       id: "business-management-system",
       name: "Business Management System",
       subtitle: "Complete Business Software",
-      price: "Starting from ₹1,49,999",
+      price: "Starting at ₹1,49,999",
       description:
         "Complete business management software tailored to workflows, including authentication, dashboards, reports, automation, APIs, and database integration.",
     },
@@ -60,7 +60,7 @@ export const servicesPageContent = {
       id: "custom-software-platform",
       name: "Custom Software Platform",
       subtitle: "Tailored Engineering Solutions",
-      price: "Starting from ₹1,99,999",
+      price: "Starting at ₹1,99,999",
       description:
         "Custom-built software platforms designed around business requirements with scalable architecture and long-term maintainability.",
     },
