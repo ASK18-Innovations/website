@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { AppShell } from "@/components/layout";
+import { OrganizationJsonLd } from "@/components/seo";
 import { siteConfig } from "@/config/site";
 
 import "./globals.css";
@@ -33,6 +34,7 @@ export default function RootLayout({
           "text-[length:var(--ask18-body-size)] leading-[var(--ask18-body-leading)]"
         }
       >
+        <OrganizationJsonLd />
         <AppShell>{children}</AppShell>
       </body>
     </html>

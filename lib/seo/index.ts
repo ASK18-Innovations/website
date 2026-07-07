@@ -7,3 +7,7 @@ export { resolveDescription } from "./descriptions";
 export { getDefaultRobots, type SeoConfigRobots } from "./robots";
 export { createPageMetadata, type PageMetadataOptions } from "./metadata";
 export { sitemapRoutes } from "./sitemap-routes";
+export {
+  organizationSchema,
+  serializeJsonLd,
+} from "./organization-schema";

@@ -10,6 +10,8 @@ const whatsappMessage =
 export const siteConfig = {
   name: "ASK18 Innovations",
   tagline: "Engineering software that earns trust.",
+  /** Canonical production origin for SEO, canonical URLs, and structured data. */
+  productionUrl: "https://ask18innovations.com",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ask18innovations.com",
   email: "ask18innovations@gmail.com",
   phone: {

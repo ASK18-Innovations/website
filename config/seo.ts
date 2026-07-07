@@ -1,5 +1,9 @@
 import { siteConfig } from "./site";
 
+/** Approved root meta description for defaults and social previews. */
+export const defaultSiteDescription =
+  "Engineering-first software development for reliable websites, business systems, dashboards, automation, integrations, and long-term product support.";
+
 /**
  * Default SEO and social metadata configuration.
  * Page-level metadata helpers in `lib/seo/` must derive from these values.
@@ -9,7 +13,7 @@ export const seoConfig = {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
-  description: `${siteConfig.name} — ${siteConfig.tagline}`,
+  description: defaultSiteDescription,
   keywords: [
     "ASK18 Innovations",
     "enterprise software",
@@ -24,12 +28,12 @@ export const seoConfig = {
       follow: true,
     },
   },
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(siteConfig.productionUrl),
   openGraph: {
     type: "website" as const,
-    locale: siteConfig.locale,
+    locale: "en_IN",
     siteName: siteConfig.name,
-    url: siteConfig.url,
+    url: siteConfig.productionUrl,
   },
   twitter: {
     card: "summary_large_image" as const,

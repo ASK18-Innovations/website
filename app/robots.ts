@@ -18,6 +18,6 @@ export default function robots(): MetadataRoute.Robots {
       disallow: !index || !follow ? "/" : undefined,
     },
     sitemap: resolveAbsoluteUrl("/sitemap.xml"),
-    host: siteConfig.url.replace(/\/$/, ""),
+    host: siteConfig.productionUrl.replace(/\/$/, ""),
   };
 }

@@ -1,0 +1,1 @@
+export { OrganizationJsonLd } from "./OrganizationJsonLd";

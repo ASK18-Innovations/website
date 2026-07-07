@@ -11,7 +11,6 @@ function createSitemapEntry(
 ): SitemapEntry {
   return {
     url: resolveAbsoluteUrl(path),
-    lastModified: new Date(),
     changeFrequency: path === routes.home ? "weekly" : "monthly",
     priority: path === routes.home ? 1 : 0.8,
   };

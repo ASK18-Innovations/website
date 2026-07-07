@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 
 import { seoConfig } from "@/config/seo";
-import { siteConfig } from "@/config/site";
 import type { RoutePath } from "@/config/routes";
 
 import { resolveDescription } from "./descriptions";
+import {
+  getDefaultOpenGraphImages,
+  getDefaultTwitterImages,
+} from "./social-preview.constants";
 import { resolvePageTitle } from "./titles";
 import { resolveAbsoluteUrl } from "./urls";
 
@@ -17,9 +20,39 @@ export type PageMetadataOptions = {
   path?: RoutePath;
 };
 
+function buildOpenGraphMetadata(
+  title: string,
+  description: string,
+  url: string,
+): NonNullable<Metadata["openGraph"]> {
+  return {
+    type: seoConfig.openGraph.type,
+    locale: seoConfig.openGraph.locale,
+    siteName: seoConfig.openGraph.siteName,
+    title,
+    description,
+    url,
+    images: getDefaultOpenGraphImages(),
+  };
+}
+
+function buildTwitterMetadata(
+  title: string,
+  description: string,
+): NonNullable<Metadata["twitter"]> {
+  return {
+    card: seoConfig.twitter.card,
+    title,
+    description,
+    creator: seoConfig.creator,
+    images: getDefaultTwitterImages(),
+  };
+}
+
 /**
  * Builds page-level Metadata by merging overrides with centralized defaults.
- * Use in future route segments: `export const metadata = createPageMetadata({ ... })`.
+ * Open Graph and Twitter objects are complete page-safe structures so nested
+ * metadata does not drop inherited social fields during shallow merges.
  */
 export function createPageMetadata({
   title,
@@ -28,25 +61,19 @@ export function createPageMetadata({
 }: PageMetadataOptions = {}): Metadata {
   const resolvedTitle = resolvePageTitle(title);
   const resolvedDescription = resolveDescription(description);
-  const canonicalUrl = path ? resolveAbsoluteUrl(path) : siteConfig.url;
+  const canonicalUrl = path ? resolveAbsoluteUrl(path) : resolveAbsoluteUrl("/");
 
   return {
     ...(title !== undefined ? { title } : {}),
     description: resolvedDescription,
-    alternates: path ? { canonical: canonicalUrl } : undefined,
-    openGraph: {
-      type: seoConfig.openGraph.type,
-      locale: seoConfig.openGraph.locale,
-      siteName: seoConfig.openGraph.siteName,
-      title: resolvedTitle,
-      description: resolvedDescription,
-      url: canonicalUrl,
+    alternates: {
+      canonical: canonicalUrl,
     },
-    twitter: {
-      card: seoConfig.twitter.card,
-      title: resolvedTitle,
-      description: resolvedDescription,
-      creator: seoConfig.creator,
-    },
+    openGraph: buildOpenGraphMetadata(
+      resolvedTitle,
+      resolvedDescription,
+      canonicalUrl,
+    ),
+    twitter: buildTwitterMetadata(resolvedTitle, resolvedDescription),
   };
 }
