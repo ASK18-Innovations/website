@@ -11,3 +11,4 @@ export {
   organizationSchema,
   serializeJsonLd,
 } from "./organization-schema";
+export { websiteSchema } from "./website-schema";

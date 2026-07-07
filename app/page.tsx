@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { MainContent } from "@/components/layout";
+import { WebSiteJsonLd } from "@/components/seo";
 import {
   EngineeringPhilosophySection,
   FeaturedProductsSection,
@@ -22,7 +23,9 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Home() {
   return (
-    <MainContent className="flex flex-1 flex-col">
+    <>
+      <WebSiteJsonLd />
+      <MainContent className="flex flex-1 flex-col">
       <HomeHero />
       <WhoWeAreSection />
       <WhatWeBuildSection />
@@ -32,5 +35,6 @@ export default function Home() {
       <ProcessSection />
       <HomeCTASection />
     </MainContent>
+    </>
   );
 }
